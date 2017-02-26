@@ -1,21 +1,19 @@
 #!/bin/env python
-
-
 def main():
     userChoice = int(input("1) encrypt\n2) decrypt\n> "))
     if userChoice == 1:
         plaintext = input("Plaintext: ")
         key = input("Key: ")
         key = key.replace(" ", "")
-        print("encrypted: " + encipher(plaintext, key))
+        print("encrypted: " + encrypt(plaintext, key))
     else:
         ciphertext = input("Ciphertext: ")
         key = input("Key: ")
         key = key.replace(" ", "")
-        print("decrypted: " + decipher(ciphertext, key))
+        print("decrypted: " + decrypt(ciphertext, key))
 
 
-def encipher(plaintext, key):
+def encrypt(plaintext, key):
     numOfSpace = 0
     ciphertext = ""
     for i, char in enumerate(plaintext):
@@ -29,7 +27,7 @@ def encipher(plaintext, key):
     return ciphertext
 
 
-def decipher(ciphertext, key):
+def decrypt(ciphertext, key):
     numOfSpace = 0
     plaintext = ""
     for i, char in enumerate(ciphertext):
