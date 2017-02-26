@@ -20,10 +20,12 @@ def main():
 def rot(plaintext, key):
     ciphertext = ""
     for char in plaintext:
-        if char == " ":
-            ciphertext += " "
-        else:
+        if ord(char) > 64 and ord(char) < 91:
+            ciphertext += chr((ord(char) - 65 + key) % 26 + 65)
+        elif ord(char) > 96 and ord(char) < 123:
             ciphertext += chr((ord(char) - 97 + key) % 26 + 97)
+        else:
+            ciphertext += char
     return ciphertext
 
 
@@ -40,7 +42,7 @@ def crackRot(ciphertext, length):
     for i in range(1, 27):
         currentIteration = rot(ciphertext, i)
         for line in lines:
-            if line.rstrip() in currentIteration:
+            if line.rstrip() in currentIteration.lower():
                 possibleOutputs[i] += 1
     sortedOutputs = sorted(((possibleOutputs[ip], ip)
                             for ip in possibleOutputs), reverse=True)
